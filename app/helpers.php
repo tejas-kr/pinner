@@ -19,7 +19,11 @@
 
                 $img = $crawler->filter('img')->attr('src');
                 if ($img[0] == '/') {
-                    $img = $url . $img;
+                    $img = ltrim($img, '/');
+                    $img = $url . '/' . $img;
+                    /**
+                     * Remain to fix for wikipedia
+                     */
                 }
 
             } catch (Exception $e) {
