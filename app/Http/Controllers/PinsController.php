@@ -69,7 +69,7 @@ class PinsController extends Controller
             'id' => 'required'
         ]);
         $id = $request->input('id');
-        $pin = Pin::where('id', $id);
+        $pin = Pin::find($id);
         $data = scrape_webpage($pin->url);
         $pin->text = $data['text'];
         $pin->img = $data['img'];

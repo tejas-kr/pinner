@@ -75,7 +75,7 @@ Create new Pin
                         });
                         
                         $.ajax({
-                            url: {{ url('pins/save_link_data') }},
+                            url: "{{ url('pins/save_link_data') }}",
                             method: "post",
                             data: {
                                 id: data.id
