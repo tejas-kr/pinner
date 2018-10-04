@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'PinsController@index');
 
 Route::resource('pins', 'PinsController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
+
+Route::post('/pins/save_link_data', 'PinsController@save_link_data');
