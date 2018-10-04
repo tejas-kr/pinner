@@ -27,8 +27,12 @@ All Pins of {{ Auth::user()->name }}
                             @foreach ($pins as $pin)
                                 <div class="grid-item">
                                     <h3><a href="{{ url('pins/' . $pin->id) }}">{{ $pin->title }}</a></h3>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    <img class="img-thumbnail" src="https://images.pexels.com/photos/1280730/pexels-photo-1280730.jpeg?auto=compress&cs=tinysrgb&h=350">
+                                    <p>
+                                        {{ strip_tags($pin->text) }}
+                                    </p>
+                                    @if ($pin->img != "")
+                                        <img class="img-thumbnail" src="{{ $pin->img }}">
+                                    @endif
                                     <hr>
                                 </div>
                             @endforeach

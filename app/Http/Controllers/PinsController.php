@@ -86,7 +86,8 @@ class PinsController extends Controller
      */
     public function show($id)
     {
-        //
+        $pin = Pin::find($id);
+        return view('pins.show')->with('pin', $pin);
     }
 
     /**
@@ -97,7 +98,11 @@ class PinsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pin = Pin::find($id);
+        if ($pin->user_id == Auth::user()->id) {
+            return view('pins.edit')->with('pin', $pin);
+        }
+        return redirect('/pins');
     }
 
     /**
@@ -109,7 +114,22 @@ class PinsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'title' => 'required',
+            'url' => 'required'
+        ]);
+        $pin = Pin::find($id);
+        if ($pin->user_id == Auth::user()->id) {
+            $pin->title = $request->input('title');
+            $pin->url = $request->input('url');
+            $pin->user_id = Auth::user()->id;
+
+            $pin->save();
+            echo json_encode(['success' => 1, 'id' => $pin->id]);
+        } else {
+            echo json_encode(['success' => 0, 'id' => -19035]);
+        }
     }
 
     /**
@@ -120,6 +140,8 @@ class PinsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pin = Pin::find($id);
+        $pin->delete();
+        echo 1;
     }
 }

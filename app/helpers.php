@@ -18,8 +18,10 @@
                 }
 
                 $img = $crawler->filter('img')->attr('src');
-                $img = ltrim($img, '/');
-                $img = ltrim($img, ':');
+                if ($img[0] == '/') {
+                    $img = $url . $img;
+                }
+
             } catch (Exception $e) {
 
             }
