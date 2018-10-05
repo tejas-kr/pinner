@@ -9,6 +9,6 @@ contains list of things that are to be done and those that are done.
 - add tags
 
 ## complted things
-- ~ make a helper for scraping data ~
-- ~ show pins ~
-- ~ pagination ~
+- ~~make a helper for scraping data~~
+- ~~show pins~~
+- ~~pagination~~
